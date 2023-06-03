@@ -1,9 +1,11 @@
-import Heading from './Heading';
+import Heading from "./Heading";
 
 export default function Footer() {
   return (
     <footer>
-     <Heading text="Footer" tag="h3"></Heading>
+      <div className="container">
+        <Heading text="Footer" tag="h3"></Heading>
+      </div>
     </footer>
-  )
+  );
 }

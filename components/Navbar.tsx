@@ -13,8 +13,8 @@ const navigation = [
   },
   {
     id: 2,
-    title: "Posts",
-    path: "/posts",
+    title: "Blender Sheet",
+    path: "/blenderCheatSheet",
   },
   {
     id: 3,
@@ -29,8 +29,8 @@ export default function Navbar() {
     "text-white hover:text-slate-300  hover:duration-300 font-light after:w-full relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:inline-block after:scale-x-0 after:ease after:duration-150 hover:after:scale-x-100";
   const { pathname } = useRouter();
   return (
-    <div className="flex justify-between items-center container mx-auto">
-      <Heading text="Logo" tag="h3"></Heading>
+    <div className="flex justify-between items-center container">
+      <Heading className="text-white" text="Logo" tag="h3"></Heading>
       <nav className="flex gap-5 items-center">
         {navigation.map(({ id, title, path }) => {
           return (

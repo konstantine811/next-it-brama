@@ -14,7 +14,7 @@ const FadeInElement: FC<IFadeInElementProps> = ({ children, className }) => {
       {
         opacity: 0,
         y: 7,
-        scale: 0.99,
+        scale: 1.02,
       },
       {
         opacity: 1,

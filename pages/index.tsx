@@ -1,3 +1,11 @@
-const Home = () => <h1 className="text-white">Hello from home page</h1>;
+import ConditionRenderAnimation from "@/components/ConditionRenderAnimatin";
+
+const Home = () => {
+  return (
+    <div className="container">
+      <ConditionRenderAnimation></ConditionRenderAnimation>
+    </div>
+  );
+};
 
 export default Home;

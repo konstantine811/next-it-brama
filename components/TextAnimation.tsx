@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import gsap from "gsap";
-import { NextPage } from "next";
 
 interface ITextSplitProps {
   children: string;
@@ -9,7 +8,7 @@ interface ITextSplitProps {
   tag?: keyof JSX.IntrinsicElements;
 }
 
-const TextSplitAnimation: NextPage<ITextSplitProps> = ({
+const TextSplitAnimation: FC<ITextSplitProps> = ({
   children,
   tag,
   className,

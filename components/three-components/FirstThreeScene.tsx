@@ -3,8 +3,7 @@ import { Canvas } from "@react-three/fiber";
 
 export default function FirstThreeScene() {
   return (
-    <h1>helow world</h1>
-    /*  <Canvas
+    <Canvas
       className="border border-violet-950 rounded"
       shadows
       camera={{
@@ -17,6 +16,6 @@ export default function FirstThreeScene() {
         <boxGeometry args={[10, 10, 10]}></boxGeometry>
         <meshPhysicalMaterial color="#151515" />
       </mesh>
-    </Canvas> */
+    </Canvas>
   );
 }

@@ -1,13 +1,14 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 // components
 import Footer from "./common-partials/Footer";
 import Header from "./common-partials/Header";
+import { NextPage } from "next";
 
 interface ILayoutProps {
   children: ReactNode;
 }
 
-const Layout: FC<ILayoutProps> = ({ children }) => {
+const Layout: NextPage<ILayoutProps> = ({ children }) => {
   return (
     <>
       <Header></Header>

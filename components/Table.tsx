@@ -1,12 +1,12 @@
 import { IBlenderCheatSheetData } from "@data/model/blender-page/blender-cheat-sheet.model";
-import { FC } from "react";
+import { NextPage } from "next";
 
 interface ITableProps {
   dataTable: IBlenderCheatSheetData;
   wrapClasses?: string;
 }
 
-const Table: FC<ITableProps> = ({ dataTable, wrapClasses }) => {
+const Table: NextPage<ITableProps> = ({ dataTable, wrapClasses }) => {
   const classNameTh =
     "border-b dark:border-slate-600 font-medium p-2 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left";
   const classNameTd =

@@ -1,12 +1,16 @@
-import { FC, ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { NextPage } from "next";
 
 interface IFadeInElementProps {
   children: ReactNode;
   className?: string;
 }
 
-const FadeInElement: FC<IFadeInElementProps> = ({ children, className }) => {
+const FadeInElement: NextPage<IFadeInElementProps> = ({
+  children,
+  className,
+}) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   function fadeText() {
     gsap.fromTo(

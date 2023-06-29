@@ -8,7 +8,7 @@ export default function FirstThreeScene() {
       className="border border-violet-950 rounded"
       shadows
       camera={{
-        position: [-6, 7, 7],
+        position: [-60, 70, 70],
       }}
     >
       <ambientLight color="white" intensity={1} />
@@ -18,7 +18,7 @@ export default function FirstThreeScene() {
         <meshPhysicalMaterial color="#151515" />
       </mesh>
       <mesh receiveShadow rotation-x={-Math.PI / 2}>
-        <planeGeometry args={[100, 100, 1, 1]}></planeGeometry>
+        <planeGeometry args={[50, 50, 1, 1]}></planeGeometry>
         <meshStandardMaterial side={DoubleSide}></meshStandardMaterial>
       </mesh>
     </Canvas>

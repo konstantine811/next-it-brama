@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import { onHover } from "@/slices/cursorSlices";
+import {
+  onHover,
+  onSizeHoverElement,
+  onCenterHoverElement,
+} from "@/slices/cursorSlices";
 // components
 import Heading from "./Heading";
 import { signOut, useSession } from "next-auth/react";
+import { SyntheticEvent, createRef, useMemo, useRef } from "react";
 
 const navigation = [
   {
@@ -26,7 +31,14 @@ const navigation = [
 
 export default function Navbar() {
   const dispatch = useDispatch();
-  const { data: sessionData } = useSession();
+  const { data: sessionData, status } = useSession();
+  const linkRefs = useMemo(
+    () => navigation.map(() => createRef<HTMLAnchorElement>()),
+    []
+  );
+  console.log(sessionData, status);
+  const signInBtnRef = useRef<HTMLAnchorElement>(null);
+  const signOutBtnRef = useRef<HTMLButtonElement>(null);
   const linkClassNames =
     "text-white hover:text-slate-300  hover:duration-300 font-light after:w-full relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:inline-block after:scale-x-0 after:ease after:duration-150 hover:after:scale-x-100";
   const btnClassNames =
@@ -36,13 +48,23 @@ export default function Navbar() {
     <div className="flex justify-between items-center container">
       <Heading className="text-white" text="Logo" tag="h3"></Heading>
       <nav className="flex gap-5 items-center">
-        {navigation.map(({ id, title, path }) => {
+        {navigation.map(({ id, title, path }, index) => {
           return (
             <Link
               key={id}
               href={path}
-              onMouseEnter={() => {
+              ref={linkRefs[index] as any}
+              onMouseEnter={(e) => {
                 dispatch(onHover(true));
+                if (linkRefs[index]) {
+                  const ref = linkRefs[index].current;
+                  if (ref) {
+                    const { offsetWidth, offsetLeft } = ref;
+                    const center = offsetLeft + offsetWidth / 2;
+                    dispatch(onCenterHoverElement(center));
+                    dispatch(onSizeHoverElement(offsetWidth));
+                  }
+                }
               }}
               onMouseLeave={() => {
                 dispatch(onHover(false));
@@ -59,13 +81,48 @@ export default function Navbar() {
         })}
         {sessionData ? (
           <button
+            ref={signOutBtnRef}
+            onMouseEnter={(e) => {
+              dispatch(onHover(true));
+              if (signOutBtnRef) {
+                const ref = signOutBtnRef.current;
+                if (ref) {
+                  const { offsetWidth, offsetLeft } = ref;
+                  const center = offsetLeft + offsetWidth / 2;
+                  dispatch(onCenterHoverElement(center));
+                  dispatch(onSizeHoverElement(offsetWidth));
+                }
+              }
+            }}
+            onMouseLeave={() => {
+              dispatch(onHover(false));
+            }}
             className={btnClassNames}
             onClick={() => signOut({ callbackUrl: "/" })}
           >
             Sign out
           </button>
         ) : (
-          <Link className={btnClassNames} href="/api/auth/signin">
+          <Link
+            ref={signInBtnRef}
+            onMouseEnter={(e) => {
+              dispatch(onHover(true));
+              if (signInBtnRef) {
+                const ref = signInBtnRef.current;
+                if (ref) {
+                  const { offsetWidth, offsetLeft } = ref;
+                  const center = offsetLeft + offsetWidth / 2;
+                  dispatch(onCenterHoverElement(center));
+                  dispatch(onSizeHoverElement(offsetWidth));
+                }
+              }
+            }}
+            onMouseLeave={() => {
+              dispatch(onHover(false));
+            }}
+            className={btnClassNames}
+            href="/api/auth/signin"
+          >
             Sign in
           </Link>
         )}

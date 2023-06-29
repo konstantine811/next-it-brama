@@ -1,20 +1,28 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { onHoverState } from "@/slices/cursorSlices";
+import {
+  onHoverState,
+  onSizeHoverState,
+  onCenterHoverState,
+} from "@/slices/cursorSlices";
 
 export default function Cursor() {
   const circleSm = useRef<HTMLDivElement>(null);
   const circleLg = useRef<HTMLDivElement>(null);
   const isHover = useSelector(onHoverState);
+  const onSizeHover = useSelector(onSizeHoverState);
+  const onCenterHover = useSelector(onCenterHoverState);
 
   useEffect(() => {
     if (isHover) {
       gsap.to(circleLg.current, {
         scale: 2,
         overwrite: true,
-        ease: "back.out(1.7)",
+        ease: "back.out(1.8)",
         duration: 0.6,
+        width: getWidthCircle(onSizeHover),
+        height: dLgHover,
       });
     } else {
       gsap.to(circleLg.current, {
@@ -22,13 +30,19 @@ export default function Cursor() {
         overwrite: true,
         ease: "expo.out",
         duration: 0.4,
+        ...getSizeCircle(dLg),
       });
     }
-  }, [isHover]);
+  }, [isHover, onSizeHover, onCenterHover]);
   const circleStyleClass =
     "fixed top-0 left-0 mix-blend-difference z-[1000] bg-white rounded-full";
   const dSm = 8;
-  const dLg = 30;
+  const dLg = 5;
+  const dLgHover = 20;
+
+  function getWidthCircle(width: number) {
+    return width / 1.5;
+  }
 
   function getSizeCircle(diameter: number) {
     return {
@@ -45,12 +59,21 @@ export default function Cursor() {
       duration: 0.1,
     });
 
-    gsap.to(circleLg.current, {
-      x: e.pageX - dLg / 2,
-      y: e.pageY - dLg / 2,
-      ease: "expo.out",
-      duration: 1.5,
-    });
+    if (isHover) {
+      gsap.to(circleLg.current, {
+        x: onCenterHover - getWidthCircle(onSizeHover) / 2,
+        y: e.pageY - dLgHover / 2,
+        ease: "expo.out",
+        duration: 1.5,
+      });
+    } else {
+      gsap.to(circleLg.current, {
+        x: e.pageX - dLg / 2,
+        y: e.pageY - dLg / 2,
+        ease: "expo.out",
+        duration: 1.5,
+      });
+    }
   };
 
   const onHoverEl = (e: boolean) => {

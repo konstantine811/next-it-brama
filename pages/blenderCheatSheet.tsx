@@ -3,7 +3,7 @@ import TextSplitAnimation from "@/components/TextAnimation";
 import { dataObjectModeTable } from "@/data/blender-page/blender-cheat-sheet.data";
 // components
 import FadeInElement from "@/components/animation-wrapper/FadeInElement";
-import Table from "@/components/Table";
+import Table from "@/components/common-partials/Table";
 
 const BlenderCheatSheet = () => {
   return (

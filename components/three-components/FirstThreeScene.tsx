@@ -1,8 +1,12 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { DoubleSide } from "three";
+import { Perf } from "r3f-perf";
+import { useSelector } from "react-redux";
+import { onHeaderHeightState } from "@/slices/commonSlice";
 
 export default function FirstThreeScene() {
+  const headerHeight = useSelector(onHeaderHeightState);
   return (
     <Canvas
       className="border border-violet-950 rounded"
@@ -11,6 +15,7 @@ export default function FirstThreeScene() {
         position: [-60, 70, 70],
       }}
     >
+      <Perf style={{ top: `${headerHeight}px` }} position="top-left" />
       <ambientLight color="white" intensity={1} />
       <OrbitControls />
       <mesh position-y={5.1} receiveShadow castShadow>

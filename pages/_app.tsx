@@ -3,7 +3,7 @@ import "../styles/global.scss";
 import Layout from "@/components/Layout";
 import Cursor from "../components/common-partials/Cursor";
 // store
-import { store } from "@/app/store";
+import { store } from "@/slices/index.store";
 import { Provider } from "react-redux";
 // next auth
 import { Session } from "next-auth";

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   onHover,
   onSizeHoverElement,
@@ -8,7 +8,7 @@ import {
 } from "@/slices/cursorSlices";
 // components
 import { signOut, useSession } from "next-auth/react";
-import { SyntheticEvent, createRef, useMemo, useRef } from "react";
+import { createRef, useMemo, useRef } from "react";
 
 const navigation = [
   {

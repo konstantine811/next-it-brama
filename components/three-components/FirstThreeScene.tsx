@@ -5,7 +5,7 @@ import { Perf } from "r3f-perf";
 export default function FirstThreeScene() {
   return (
     <Canvas
-      className="border rounded"
+      className="border border-violet-950 rounded"
       shadows
       camera={{
         position: [-6, 7, 7],

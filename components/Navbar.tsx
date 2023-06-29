@@ -36,7 +36,6 @@ export default function Navbar() {
     () => navigation.map(() => createRef<HTMLAnchorElement>()),
     []
   );
-  console.log(sessionData, status);
   const signInBtnRef = useRef<HTMLAnchorElement>(null);
   const signOutBtnRef = useRef<HTMLButtonElement>(null);
   const linkClassNames =

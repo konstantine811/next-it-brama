@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 // components
-import Footer from "./Footer";
-import Header from "./Header";
+import Footer from "./common-partials/Footer";
+import Header from "./common-partials/Header";
 
 interface ILayoutProps {
   children: ReactNode;

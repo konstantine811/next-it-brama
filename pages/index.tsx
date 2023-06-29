@@ -1,11 +1,7 @@
-import ConditionRenderAnimation from "@/components/ConditionRenderAnimatin";
+import FirstThreeScene from "@/components/three-components/FirstThreeScene";
 
 const Home = () => {
-  return (
-    <div className="container">
-      <ConditionRenderAnimation></ConditionRenderAnimation>
-    </div>
-  );
+  return <FirstThreeScene></FirstThreeScene>;
 };
 
 export default Home;

@@ -1,4 +1,4 @@
-import { FC, useEffect, useLayoutEffect, useRef } from "react";
+import { FC, useEffect } from "react";
 import gsap from "gsap";
 
 interface ITextSplitProps {

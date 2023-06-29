@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import "../styles/global.scss";
 import Layout from "@/components/Layout";
-import Cursor from "../components/Cursor";
+import Cursor from "../components/common-partials/Cursor";
 // store
 import { store } from "@/app/store";
 import { Provider } from "react-redux";
@@ -21,7 +21,7 @@ export default function App({
         <Cursor />
         <div className="min-h-screen flex flex-col justify-between">
           <Layout>
-            <main className="flex-1">
+            <main className="flex-1 grid">
               <Component {...pageProps} />
             </main>
           </Layout>

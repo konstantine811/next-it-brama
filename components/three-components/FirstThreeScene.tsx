@@ -1,10 +1,11 @@
-import { OrbitControls } from "@react-three/drei";
+/* import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Perf } from "r3f-perf";
+import { Perf } from "r3f-perf"; */
 
 export default function FirstThreeScene() {
   return (
-    <Canvas
+    <h1>hello</h1>
+    /*  <Canvas
       className="border border-violet-950 rounded"
       shadows
       camera={{
@@ -17,6 +18,6 @@ export default function FirstThreeScene() {
         <boxGeometry args={[10, 10, 10]}></boxGeometry>
         <meshPhysicalMaterial color="#151515" />
       </mesh>
-    </Canvas>
+    </Canvas> */
   );
 }

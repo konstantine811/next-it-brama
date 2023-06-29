@@ -1,17 +1,20 @@
-import { FC, useEffect } from "react";
+import { ComponentType, FC, useEffect } from "react";
 import gsap from "gsap";
 
 interface ITextSplitProps {
   children: string;
   isWordSplit?: boolean;
   className?: string;
+  tag?: ComponentType;
 }
 
 const TextSplitAnimation: FC<ITextSplitProps> = ({
   children,
+  tag,
   className,
   isWordSplit = false,
 }) => {
+  const Tag = tag || "h1";
   const classAnim = "txt-anim";
   function fadeText() {
     gsap.fromTo(
@@ -35,7 +38,7 @@ const TextSplitAnimation: FC<ITextSplitProps> = ({
     fadeText();
   });
   return (
-    <span className={`${className} text-white`}>
+    <Tag className={`${className} text-white`}>
       {children.split(" ").map((word, wordIndex) => {
         return (
           <span
@@ -59,7 +62,7 @@ const TextSplitAnimation: FC<ITextSplitProps> = ({
           </span>
         );
       })}
-    </span>
+    </Tag>
   );
 };
 

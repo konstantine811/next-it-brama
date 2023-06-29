@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { ComponentType, FC } from "react";
 
 interface IHeadingProps {
-  tag?: keyof JSX.IntrinsicElements;
+  tag?: ComponentType | keyof JSX.IntrinsicElements;
   text: string;
   className?: string;
 }

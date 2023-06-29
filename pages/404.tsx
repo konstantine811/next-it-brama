@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Heading from "@/components/Heading";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -18,7 +17,7 @@ export default function NotFoundPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Heading text="404 - not found page" tag="h2"></Heading>
+      <h3>404 - not found page</h3>
     </>
   );
 }

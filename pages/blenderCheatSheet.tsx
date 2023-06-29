@@ -1,5 +1,3 @@
-import Heading from "@/components/Heading";
-import styles from "../styles/Post.module.scss";
 import TextSplitAnimation from "@/components/TextAnimation";
 // data
 import { dataObjectModeTable } from "@/data/blender-page/blender-cheat-sheet.data";

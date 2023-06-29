@@ -1,5 +1,4 @@
-import Head from 'next/head';
-import Heading from '@/components/Heading';
+import Head from "next/head";
 
 export default function Search() {
   return (
@@ -10,7 +9,7 @@ export default function Search() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-     <Heading text="Hello from search page"></Heading>
+      <h1>Hello from search page</h1>
     </>
-  )
+  );
 }

@@ -7,7 +7,6 @@ import {
   onCenterHoverElement,
 } from "@/slices/cursorSlices";
 // components
-import Heading from "./Heading";
 import { signOut, useSession } from "next-auth/react";
 import { SyntheticEvent, createRef, useMemo, useRef } from "react";
 
@@ -45,7 +44,7 @@ export default function Navbar() {
   const { pathname } = useRouter();
   return (
     <div className="flex justify-between items-center container">
-      <Heading className="text-white" text="Logo" tag="h3"></Heading>
+      <h3 className="text-white">Logo</h3>
       <nav className="flex gap-5 items-center">
         {navigation.map(({ id, title, path }, index) => {
           return (

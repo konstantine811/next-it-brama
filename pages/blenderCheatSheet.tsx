@@ -8,9 +8,9 @@ import Table from "@/components/Table";
 const BlenderCheatSheet = () => {
   return (
     <div className="container mt-10">
-      <TextSplitAnimation className="text-3xl text-white uppercase text-center">
-        Blender cheat sheet
-      </TextSplitAnimation>
+      <h1 className="text-3xl text-white uppercase text-center">
+        <TextSplitAnimation>Blender cheat sheet</TextSplitAnimation>
+      </h1>
       <FadeInElement>
         <Table
           wrapClasses="max-w-5xl mx-auto mt-5"

@@ -5,16 +5,13 @@ interface ITextSplitProps {
   children: string;
   isWordSplit?: boolean;
   className?: string;
-  tag?: keyof JSX.IntrinsicElements;
 }
 
 const TextSplitAnimation: FC<ITextSplitProps> = ({
   children,
-  tag,
   className,
   isWordSplit = false,
 }) => {
-  const Tag = tag || "h1";
   const classAnim = "txt-anim";
   function fadeText() {
     gsap.fromTo(
@@ -38,7 +35,7 @@ const TextSplitAnimation: FC<ITextSplitProps> = ({
     fadeText();
   });
   return (
-    <Tag className={`${className} text-white`}>
+    <span className={`${className} text-white`}>
       {children.split(" ").map((word, wordIndex) => {
         return (
           <span
@@ -62,7 +59,7 @@ const TextSplitAnimation: FC<ITextSplitProps> = ({
           </span>
         );
       })}
-    </Tag>
+    </span>
   );
 };
 

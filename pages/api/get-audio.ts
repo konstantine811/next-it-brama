@@ -5,7 +5,6 @@ export default async function getAudioUrl(
   res: NextApiResponse
 ) {
   const { url } = req.body;
-  const apiKey = process.env.CLOUDEMERSIVE_API_KEY as string;
   try {
     const response = await fetch(url);
     console.log(await response);

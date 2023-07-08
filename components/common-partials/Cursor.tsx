@@ -38,7 +38,7 @@ export default function Cursor() {
     "fixed top-0 left-0 mix-blend-difference z-[1000] bg-white rounded-full";
   const dSm = 8;
   const dLg = 9;
-  const dLgHover = 30;
+  const dLgHover = 20;
 
   function getWidthCircle(width: number) {
     return width / 2;

@@ -7,7 +7,7 @@ export default async function createMessage(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  /* const { text, lang } = req.body;
+  const { text, lang } = req.body;
   const client = new textToSpeech.TextToSpeechClient();
   // Construct the request
   const request = {
@@ -27,6 +27,5 @@ export default async function createMessage(
     res.status(200).json({ path: "output.mp3" });
   } else {
     res.status(400).json({ error: "error" });
-  } */
-  res.status(400).json({ error: "error" });
+  }
 }

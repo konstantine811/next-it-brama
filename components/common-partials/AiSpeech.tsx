@@ -52,7 +52,7 @@ export default function AISpeech() {
   };
 
   const handleSubmit = async (event: any) => {
-    setAudioUrl("");
+    /*  setAudioUrl("");
     event.preventDefault();
     const answer = await getChatGPTAnswer(text);
     const langText = await getTextLang(text);
@@ -67,7 +67,7 @@ export default function AISpeech() {
         console.log(audioRef.current);
         audioRef?.current?.play();
       }, 300);
-    }
+    } */
     // setAudioUrl(objectUrl);
     // Release resource when it's loaded
     /* audio.onload = function(evt) {

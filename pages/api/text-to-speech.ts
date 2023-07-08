@@ -8,7 +8,10 @@ export default async function createMessage(
   res: NextApiResponse
 ) {
   const { text, lang } = req.body;
-  const client = new textToSpeech.TextToSpeechClient();
+  const credential = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS!);
+  const client = new textToSpeech.TextToSpeechClient({
+    credentials: credential,
+  });
   // Construct the request
   const request = {
     input: { text: text },

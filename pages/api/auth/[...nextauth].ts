@@ -8,5 +8,12 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
-  secret: process.env.JWT_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({ token }) {
+      token.role =
+        token.email === "constainabrams@gmail.com" ? "admin" : "user";
+      return token;
+    },
+  },
 });

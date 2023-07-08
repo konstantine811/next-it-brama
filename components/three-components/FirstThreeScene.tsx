@@ -9,7 +9,6 @@ export default function FirstThreeScene() {
   const headerHeight = useSelector(onHeaderHeightState);
   return (
     <Canvas
-      className="border border-violet-950 rounded"
       shadows
       camera={{
         position: [-60, 70, 70],

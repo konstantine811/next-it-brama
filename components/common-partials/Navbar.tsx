@@ -9,24 +9,9 @@ import {
 // components
 import { signOut, useSession } from "next-auth/react";
 import { createRef, useMemo, useRef } from "react";
-
-const navigation = [
-  {
-    id: 1,
-    title: "Home",
-    path: "/",
-  },
-  {
-    id: 2,
-    title: "Blender Sheet",
-    path: "/blenderCheatSheet",
-  },
-  {
-    id: 3,
-    title: "Search",
-    path: "/search",
-  },
-];
+import { navigation } from "@/configs/navigation-route";
+import { AcmeLogo } from "@/components/common-partials/svg-icons/A-icon";
+import { Text } from "@nextui-org/react";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -38,14 +23,19 @@ export default function Navbar() {
   const signInBtnRef = useRef<HTMLAnchorElement>(null);
   const signOutBtnRef = useRef<HTMLButtonElement>(null);
   const linkClassNames =
-    "text-white hover:text-slate-300  hover:duration-300 font-light after:w-full relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:inline-block after:scale-x-0 after:ease after:duration-150 hover:after:scale-x-100";
+    "text-white hover:text-slate-300  hover:duration-300 font-light after:w-full relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:inline-block after:scale-x-0 after:ease after:duration-150 hover:after:scale-x-100 p-8";
   const btnClassNames =
     "px-4 py-2 text-white rounded-2xl shadow-md shadow-zinc-950 bg-black";
   const { pathname } = useRouter();
   return (
     <div className="flex justify-between items-center container">
-      <h3 className="text-white">Logo</h3>
-      <nav className="flex gap-5 items-center">
+      <div className="flex gap-2 items-center">
+        <AcmeLogo />
+        <Text b color="inherit" hideIn="xs">
+          C.A.
+        </Text>
+      </div>
+      <nav className="flex items-center">
         {navigation.map(({ id, title, path }, index) => {
           return (
             <Link

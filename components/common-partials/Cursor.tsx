@@ -37,11 +37,11 @@ export default function Cursor() {
   const circleStyleClass =
     "fixed top-0 left-0 mix-blend-difference z-[1000] bg-white rounded-full";
   const dSm = 8;
-  const dLg = 5;
-  const dLgHover = 20;
+  const dLg = 9;
+  const dLgHover = 30;
 
   function getWidthCircle(width: number) {
-    return width / 1.5;
+    return width / 2;
   }
 
   function getSizeCircle(diameter: number) {
@@ -53,8 +53,8 @@ export default function Cursor() {
 
   const onMouseMove = (e: MouseEvent) => {
     gsap.to(circleSm.current, {
-      x: e.pageX - dSm / 2,
-      y: e.pageY - dSm / 2,
+      x: e.clientX - dSm / 2,
+      y: e.clientY - dSm / 2,
       ease: "expo.out",
       duration: 0.1,
     });
@@ -62,14 +62,14 @@ export default function Cursor() {
     if (isHover) {
       gsap.to(circleLg.current, {
         x: onCenterHover - getWidthCircle(onSizeHover) / 2,
-        y: e.pageY - dLgHover / 2,
+        y: e.clientY - dLgHover / 2,
         ease: "expo.out",
         duration: 1.5,
       });
     } else {
       gsap.to(circleLg.current, {
-        x: e.pageX - dLg / 2,
-        y: e.pageY - dLg / 2,
+        x: e.clientX - dLg / 2,
+        y: e.clientY - dLg / 2,
         ease: "expo.out",
         duration: 1.5,
       });

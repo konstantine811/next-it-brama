@@ -11,7 +11,10 @@ export default function Header() {
     dispatch(onChangeHeaderHeight(headerHeight ? headerHeight : 0));
   }, [headerRef, dispatch]);
   return (
-    <header ref={headerRef} className="border-b border-zinc-600 py-3">
+    <header
+      className="shadow-md shadow-slate-950 sticky top-0 z-10 backdrop-blur-lg"
+      ref={headerRef}
+    >
       <Navbar></Navbar>
     </header>
   );

@@ -12,7 +12,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
     <>
       <Header></Header>
       {children}
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </>
   );
 };

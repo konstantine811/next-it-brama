@@ -12,7 +12,7 @@ export default function Header() {
   }, [headerRef, dispatch]);
   return (
     <header
-      className="shadow-md shadow-slate-950 sticky top-0 z-10 backdrop-blur-lg"
+      className="shadow-md shadow-black-0 sticky top-0 z-10 backdrop-blur-lg"
       ref={headerRef}
     >
       <Navbar></Navbar>

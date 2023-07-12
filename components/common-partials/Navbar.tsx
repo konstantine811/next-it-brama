@@ -1,37 +1,29 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import {
-  onHover,
-  onSizeHoverElement,
-  onCenterHoverElement,
-} from "@/slices/cursorSlices";
 // components
 import { signOut, useSession } from "next-auth/react";
-import { createRef, useMemo, useRef } from "react";
+import { createRef, useMemo } from "react";
 import { navigation } from "@/configs/navigation-route";
 import { AcmeLogo } from "@/components/common-partials/svg-icons/A-icon";
 import { Text } from "@nextui-org/react";
 
 export default function Navbar() {
-  const dispatch = useDispatch();
-  const { data: sessionData, status } = useSession();
+  const router = useRouter();
+  const { data: sessionData } = useSession();
   const linkRefs = useMemo(
     () => navigation.map(() => createRef<HTMLAnchorElement>()),
     []
   );
-  const signInBtnRef = useRef<HTMLAnchorElement>(null);
-  const signOutBtnRef = useRef<HTMLButtonElement>(null);
   const linkClassNames =
     "text-white hover:text-slate-300  hover:duration-300 font-light after:w-full relative after:absolute after:left-0 after:bottom-0 after:h-[1px] after:inline-block after:scale-x-0 after:ease after:duration-150 hover:after:scale-x-100 p-8";
   const btnClassNames =
-    "px-4 py-2 text-white rounded-2xl shadow-md shadow-zinc-950 bg-black";
+    "d-block px-4 py-2 text-white rounded-2xl shadow-md shadow-zinc-950 bg-black";
   const { pathname } = useRouter();
   return (
     <div className="flex justify-between items-center container">
       <div className="flex gap-2 items-center">
         <AcmeLogo />
-        <Text b color="inherit" hideIn="xs">
+        <Text color="inherit" hideIn="xs">
           C.A.
         </Text>
       </div>
@@ -40,22 +32,15 @@ export default function Navbar() {
           return (
             <Link
               key={id}
+              data-cursor-magnetic
+              data-cursor-size="40px"
               href={path}
               ref={linkRefs[index] as any}
-              onMouseEnter={(e) => {
-                dispatch(onHover(true));
-                if (linkRefs[index]) {
-                  const ref = linkRefs[index].current;
-                  if (ref) {
-                    const { offsetWidth, offsetLeft } = ref;
-                    const center = offsetLeft + offsetWidth / 2;
-                    dispatch(onCenterHoverElement(center));
-                    dispatch(onSizeHoverElement(offsetWidth));
-                  }
+              onClick={(e) => {
+                e.preventDefault();
+                if (path !== pathname) {
+                  router.push(path);
                 }
-              }}
-              onMouseLeave={() => {
-                dispatch(onHover(false));
               }}
               className={`${linkClassNames} ${
                 pathname === path
@@ -67,24 +52,11 @@ export default function Navbar() {
             </Link>
           );
         })}
+
         {sessionData ? (
           <button
-            ref={signOutBtnRef}
-            onMouseEnter={(e) => {
-              dispatch(onHover(true));
-              if (signOutBtnRef) {
-                const ref = signOutBtnRef.current;
-                if (ref) {
-                  const { offsetWidth, offsetLeft } = ref;
-                  const center = offsetLeft + offsetWidth / 2;
-                  dispatch(onCenterHoverElement(center));
-                  dispatch(onSizeHoverElement(offsetWidth));
-                }
-              }
-            }}
-            onMouseLeave={() => {
-              dispatch(onHover(false));
-            }}
+            data-cursor-magnetic
+            data-cursor-size="40px"
             className={btnClassNames}
             onClick={() => signOut({ callbackUrl: "/" })}
           >
@@ -92,22 +64,8 @@ export default function Navbar() {
           </button>
         ) : (
           <Link
-            ref={signInBtnRef}
-            onMouseEnter={(e) => {
-              dispatch(onHover(true));
-              if (signInBtnRef) {
-                const ref = signInBtnRef.current;
-                if (ref) {
-                  const { offsetWidth, offsetLeft } = ref;
-                  const center = offsetLeft + offsetWidth / 2;
-                  dispatch(onCenterHoverElement(center));
-                  dispatch(onSizeHoverElement(offsetWidth));
-                }
-              }
-            }}
-            onMouseLeave={() => {
-              dispatch(onHover(false));
-            }}
+            data-cursor-magnetic
+            data-cursor-size="40px"
             className={btnClassNames}
             href="/api/auth/signin"
           >

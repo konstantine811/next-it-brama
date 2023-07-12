@@ -9,7 +9,6 @@ export default async function createMessage(
 ) {
   const { text, lang } = req.body;
   const credential = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS!);
-  console.log("log credi__________=+++", credential);
   const client = new textToSpeech.TextToSpeechClient({
     credentials: credential,
   });

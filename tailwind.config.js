@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         black: "#151515",
+        "black-0": "#000000",
       },
     },
     container: {

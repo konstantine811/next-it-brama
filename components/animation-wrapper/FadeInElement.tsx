@@ -13,15 +13,12 @@ const FadeInElement: FC<IFadeInElementProps> = ({ children, className }) => {
       wrapRef.current,
       {
         opacity: 0,
-        y: 7,
-        scale: 1.02,
+        y: 10,
       },
       {
         opacity: 1,
-        scale: 1,
         y: 0,
-        x: 0,
-        duration: 1.5,
+        duration: 2.5,
         ease: "expo.out",
       }
     );

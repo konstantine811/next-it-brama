@@ -2,15 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* * {
   cursor: none;
 }
-
+ */
 .transitionDiv {
   background: red;
   width: 200px;
   height: 100px;
   margin: 0 auto;
+}
+
+.c-cursor {
+  mix-blend-mode: difference;
 }
 
 @keyframes inAnimation {

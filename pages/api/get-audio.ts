@@ -7,7 +7,6 @@ export default async function getAudioUrl(
   const { url } = req.body;
   try {
     const response = await fetch(url);
-    console.log(await response);
     const data = await response.json();
     if (data.data.finished) {
       res.status(200).json({ data });

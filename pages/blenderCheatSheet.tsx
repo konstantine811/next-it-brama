@@ -8,7 +8,7 @@ import Table from "@/components/common-partials/Table";
 const BlenderCheatSheet = () => {
   return (
     <div className="container mt-10">
-      <TextSplitAnimation className="text-3xl text-white uppercase text-center">
+      <TextSplitAnimation size="h1" as="h1" className="m-auto">
         Blender cheat sheet
       </TextSplitAnimation>
       <FadeInElement>

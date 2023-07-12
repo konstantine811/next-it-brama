@@ -57,14 +57,11 @@ export default function AISpeech() {
     const answer = await getChatGPTAnswer(text);
     const langText = await getTextLang(text);
     const langCurrent = langText.find((i: any) => i.isReliable)?.language;
-    console.log(answer);
     const answerText = answer.data.choices[0].message.content;
     const audioPath = await getTextToSpeech(answerText, langCurrent);
     if (audioPath.path) {
       setAudioUrl(`/${audioPath.path}`);
-      console.log("set path");
       setTimeout(() => {
-        console.log(audioRef.current);
         audioRef?.current?.play();
       }, 300);
     }

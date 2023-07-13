@@ -1,5 +1,6 @@
 import { FC, ReactNode, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { cn } from "@/lib/merge-classes-utils";
 
 interface IFadeInElementProps {
   children: ReactNode;
@@ -28,7 +29,7 @@ const FadeInElement: FC<IFadeInElementProps> = ({ children, className }) => {
     fadeText();
   });
   return (
-    <div ref={wrapRef} className={className}>
+    <div ref={wrapRef} className={cn(`${className} opacity-0`)}>
       {children}
     </div>
   );

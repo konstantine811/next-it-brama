@@ -9,11 +9,4 @@ export default NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  callbacks: {
-    async jwt({ token }) {
-      token.role =
-        token.email === "constainabrams@gmail.com" ? "admin" : "user";
-      return token;
-    },
-  },
 });

@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
-  cursor: none;
-}
- */
-.transitionDiv {
-  background: red;
-  width: 200px;
-  height: 100px;
-  margin: 0 auto;
-}
-
 .c-cursor {
   mix-blend-mode: difference;
 }
@@ -36,4 +25,29 @@
     opacity: 0;
     visibility: hidden;
   }
+}
+
+.link-menu:hover {
+  .link-nested-menu {
+    visibility: visible;
+    opacity: 1;
+  }
+  .link-nested-item {
+    transform: translateX(0px);
+  }
+  .link-nested-arrow {
+    transform: scale(-1);
+  }
+}
+.link-nested-menu {
+  transition: all 0.3s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.link-nested-item {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transform: translateX(-100%);
 }

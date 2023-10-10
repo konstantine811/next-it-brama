@@ -5,7 +5,7 @@ import {
   onHoverState,
   onSizeHoverState,
   onCenterHoverState,
-} from "@/slices/cursorSlices";
+} from "@store/slices/cursorSlices";
 
 export default function Cursor() {
   const circleSm = useRef<HTMLDivElement>(null);

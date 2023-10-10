@@ -1,4 +1,4 @@
-import { IBlenderCheatSheetData } from "@data/model/blender-page/blender-cheat-sheet.model";
+import { IBlenderCheatSheetData } from "@/src/data/model/blender-page/blender-cheat-sheet.model";
 
 export const dataObjectModeTable: IBlenderCheatSheetData = {
   headTitle: ["Object Mode (3D viewport)", ""],

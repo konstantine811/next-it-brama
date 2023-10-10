@@ -1,4 +1,4 @@
-import { navigation } from "./configs/navigation-route";
+import { navigation } from "./src/configs/navigation-route";
 
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";

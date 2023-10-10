@@ -1,9 +1,9 @@
-import TextSplitAnimation from "@/components/TextAnimation";
+import TextSplitAnimation from "@components/TextAnimation";
 // data
-import { dataObjectModeTable } from "@/data/blender-page/blender-cheat-sheet.data";
+import { dataObjectModeTable } from "@data/blender-page/blender-cheat-sheet.data";
 // components
-import FadeInElement from "@/components/animation-wrapper/FadeInElement";
-import Table from "@/components/common-partials/Table";
+import FadeInElement from "@components/animation-wrapper/FadeInElement";
+import Table from "@components/common-partials/Table";
 
 const BlenderCheatSheet = () => {
   return (

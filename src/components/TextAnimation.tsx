@@ -5,7 +5,7 @@ import {
   HTMLAttributes,
   useEffect,
 } from "react";
-import TextWrap, { paragraphVariants } from "@/components/ui/TextWrapper";
+import TextWrap, { paragraphVariants } from "@/src/components/ui/TextWrapper";
 import gsap from "gsap";
 import { VariantProps } from "class-variance-authority";
 

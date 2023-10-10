@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect, useRef } from "react";
 import gsap from "gsap";
-import { cn } from "@/lib/merge-classes-utils";
+import { cn } from "@/src/lib/merge-classes-utils";
 
 interface IFadeInElementProps {
   children: ReactNode;

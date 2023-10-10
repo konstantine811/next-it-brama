@@ -1,4 +1,4 @@
-import { onChangeHeaderHeight } from "@/slices/commonSlice";
+import { onChangeHeaderHeight } from "@store/slices/commonSlice";
 import Navbar from "./Navbar";
 import { useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";

@@ -1,9 +1,9 @@
 import { ElementType, HTMLAttributes, forwardRef } from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/merge-classes-utils";
+import { cn } from "@/src/lib/merge-classes-utils";
 
 export const paragraphVariants = cva(
-  "max-w-prose dark:text-slate-200 text-slate-700 mb-2 text-center",
+  "max-w-prose dark:text-slate-200 text-slate-700 text-center",
   {
     variants: {
       size: {
@@ -34,7 +34,7 @@ const TextWrapper = forwardRef<
     <Tag
       ref={ref}
       {...props}
-      className={cn(paragraphVariants({ size, className }))}
+      className={`${cn(paragraphVariants({ size, className }))}`}
     >
       {children}
     </Tag>

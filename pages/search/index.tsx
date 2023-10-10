@@ -1,6 +1,6 @@
 import Head from "next/head";
 // components
-import TextSplitAnimation from "@/components/TextAnimation";
+import TextSplitAnimation from "@/src/components/TextAnimation";
 
 export default function Search() {
   return (

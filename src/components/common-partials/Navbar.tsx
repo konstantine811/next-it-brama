@@ -3,13 +3,15 @@ import { useRouter } from "next/router";
 // components
 import { signOut, useSession } from "next-auth/react";
 import { createRef, useMemo } from "react";
-import { navigation } from "@/configs/navigation-route";
-import { AcmeLogo } from "@/components/common-partials/svg-icons/A-icon";
-import { Text } from "@nextui-org/react";
+import { navigation } from "@configs/navigation-route";
+import { AcmeLogo } from "@components/common-partials/svg-icons/A-icon";
+import HoverMenuLinks from "@components/ui/HoverMenuLinks";
+import TextWrapper from "../ui/TextWrapper";
 
 export default function Navbar() {
   const router = useRouter();
   const { data: sessionData } = useSession();
+
   const linkRefs = useMemo(
     () => navigation.map(() => createRef<HTMLAnchorElement>()),
     []
@@ -23,15 +25,23 @@ export default function Navbar() {
     <div className="flex justify-between items-center container">
       <div className="flex gap-2 items-center">
         <AcmeLogo />
-        <Text color="inherit" hideIn="xs">
-          C.A.
-        </Text>
+        <TextWrapper as="h3">C.A.</TextWrapper>
       </div>
       <nav className="flex items-center">
-        {navigation.map(({ id, title, path }, index) => {
+        {navigation.map(({ title, path, nestedLinks }, index) => {
+          if (nestedLinks && nestedLinks.length) {
+            return (
+              <HoverMenuLinks
+                path={path}
+                title={title}
+                nestedLinks={nestedLinks}
+                key={index}
+              ></HoverMenuLinks>
+            );
+          }
           return (
             <Link
-              key={id}
+              key={index}
               data-cursor-magnetic
               data-cursor-size="40px"
               href={path}

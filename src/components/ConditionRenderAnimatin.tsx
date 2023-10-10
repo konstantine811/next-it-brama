@@ -1,5 +1,6 @@
-import { useDelayUnmount } from "@/hooks/ConditionRenderAnimatin";
 import { useState } from "react";
+import { useDelayUnmount } from "src/hooks/ConditionRenderAnimatin";
+import { cn } from "@lib/merge-classes-utils";
 
 const mountedStyle = { animation: "inAnimation 250ms ease-in" };
 const unmountedStyle = {
@@ -12,7 +13,7 @@ const ConditionRenderAnimation = () => {
   return (
     <>
       <button
-        className="border p-2 text-white rounded-md"
+        className={`${cn("border p-2 text-white rounded-md")}`}
         onClick={() => {
           setIsMounted(!isMounted);
         }}
@@ -21,7 +22,7 @@ const ConditionRenderAnimation = () => {
       </button>
       {showDiv && (
         <div
-          className="transitionDiv"
+          className={`${cn("bg-red-700 w-[200px] h-[100px] mx-auto")}`}
           style={isMounted ? mountedStyle : unmountedStyle}
         ></div>
       )}

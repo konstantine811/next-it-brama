@@ -1,6 +1,6 @@
-import TextSplitAnimation from "@/components/TextAnimation";
+import TextSplitAnimation from "@/src/components/TextAnimation";
 import Head from "next/head";
-import AISpeechC from "@/components/common-partials/AiSpeech";
+import AISpeechC from "@/src/components/common-partials/AiSpeech";
 
 export default function AISpeech() {
   return (

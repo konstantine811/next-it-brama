@@ -1,13 +1,21 @@
-import { Center, OrbitControls, Text3D } from "@react-three/drei";
-import { DoubleSide } from "three";
-import { Perf } from "r3f-perf";
+import { Canvas } from "@react-three/fiber";
 import { useSelector } from "react-redux";
-import { onHeaderHeightState } from "@/slices/commonSlice";
+// libs
+import { Perf } from "r3f-perf";
+import { OrbitControls } from "@react-three/drei";
+import { DoubleSide } from "three";
+// storage
+import { onHeaderHeightState } from "@/src/store/slices/commonSlice";
 
-const Experience = () => {
+export default function FirstThreeScene() {
   const headerHeight = useSelector(onHeaderHeightState);
   return (
-    <>
+    <Canvas
+      shadows
+      camera={{
+        position: [-60, 70, 70],
+      }}
+    >
       <Perf style={{ top: `${headerHeight}px` }} position="top-left" />
       <ambientLight color="white" intensity={1} />
       <OrbitControls />
@@ -19,14 +27,6 @@ const Experience = () => {
         <planeGeometry args={[50, 50, 1, 1]}></planeGeometry>
         <meshStandardMaterial side={DoubleSide}></meshStandardMaterial>
       </mesh>
-      <Center position={[0, 15, 0]}>
-        <Text3D size={10} font="./fonts/Nunito_ExtraLight_Regular.json">
-          Hello world
-          <meshNormalMaterial></meshNormalMaterial>
-        </Text3D>
-      </Center>
-    </>
+    </Canvas>
   );
-};
-
-export default Experience;
+}

@@ -1,5 +1,5 @@
-import { IBlenderCheatSheetData } from "@data/model/blender-page/blender-cheat-sheet.model";
 import { FC } from "react";
+import { IBlenderCheatSheetData } from "@data/model/blender-page/blender-cheat-sheet.model";
 
 interface ITableProps {
   dataTable: IBlenderCheatSheetData;

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 //
-import cursorReducer from "@/slices/cursorSlices";
-import commonReducer from "@/slices/commonSlice";
+import cursorReducer from "@/src/store/slices/cursorSlices";
+import commonReducer from "@/src/store/slices/commonSlice";
 
 export const store = configureStore({
   reducer: {

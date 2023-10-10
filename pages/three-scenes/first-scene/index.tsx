@@ -1,7 +1,7 @@
 import FirstThreeScene from "@/src/components/three-components/FirstThreeScene";
 
-const Home = () => {
+const FirstScene = () => {
   return <FirstThreeScene></FirstThreeScene>;
 };
 
-export default Home;
+export default FirstScene;

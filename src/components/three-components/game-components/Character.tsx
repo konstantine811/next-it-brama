@@ -1,15 +1,33 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { memo, useEffect, useRef } from "react";
+import { FC, RefObject, memo, useEffect, useRef } from "react";
 import { Quaternion, Vector3 } from "three";
 import { UserInput } from "@hookds/userInput";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { GLTF } from "three-stdlib";
+
+type GLTFResult = GLTF & {
+  nodes: {
+    Cube: THREE.Mesh;
+  };
+  materials: {};
+};
 
 let walkDirection = new Vector3();
 let rotateAngle = new Vector3(0, 1, 0);
 let rotateQuarternion = new Quaternion();
 let cameraTarget = new Vector3();
 
-const directionOffset = (forward, backward, left, right) => {
+interface ICharacterProps {
+  orbit: RefObject<OrbitControlsImpl>;
+}
+
+const directionOffset = (
+  forward: boolean,
+  backward: boolean,
+  left: boolean,
+  right: boolean
+) => {
   let directionOffset = 0; // w
   if (forward) {
     if (left) {
@@ -34,9 +52,9 @@ const directionOffset = (forward, backward, left, right) => {
   return directionOffset;
 };
 
-export default memo(function Character({ orbit }) {
+const Character: FC<ICharacterProps> = ({ orbit }) => {
   const { backward, forward, left, right, shift, jump } = UserInput();
-  const model = useGLTF("/models/children.glb");
+  const model = useGLTF("/models/children.glb") as GLTFResult;
   useEffect(() => {
     Object.values(model.nodes).forEach((i) => {
       if (i.type === "SkinnedMesh") {
@@ -50,7 +68,7 @@ export default memo(function Character({ orbit }) {
   const camera = useThree((state) => state.camera);
   const currentAction = useRef("");
 
-  const updateCameraTarget = (moveX, moveZ) => {
+  const updateCameraTarget = (moveX: number, moveZ: number) => {
     // move camera
     camera.position.x += moveX;
     camera.position.z += moveZ;
@@ -123,4 +141,6 @@ export default memo(function Character({ orbit }) {
       </group>
     </>
   );
-});
+};
+
+export default memo(Character);

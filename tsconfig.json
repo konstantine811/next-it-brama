@@ -24,7 +24,8 @@
       "@configs/*": ["./src/configs/*"],
       "@lib/*": ["./src/lib/*"],
       "@models/*": ["./src/models/*"],
-      "@hookds/*": ["./src/hooks/*"]
+      "@hookds/*": ["./src/hooks/*"],
+      "@shaders/*": ["./src/shaders/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

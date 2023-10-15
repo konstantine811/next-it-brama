@@ -2,8 +2,10 @@ import { cn } from "@/src/lib/merge-classes-utils";
 import Link from "next/link";
 // models
 import { INavigationData } from "@/src/models/navigation-route.model";
+import { useRouter } from "next/router";
 
 const HoverMenuLinks = ({ title, path, nestedLinks }: INavigationData) => {
+  const { pathname } = useRouter();
   const linkMenuClasses = {
     menuWrap: "link-menu relative px-8 self-stretch flex items-center",
     menuTitleWrap: "flex items-center gap-3",
@@ -25,11 +27,15 @@ const HoverMenuLinks = ({ title, path, nestedLinks }: INavigationData) => {
           return (
             <li
               key={index}
-              className={`${cn(linkMenuClasses.linkMenuItemNested)}`}
+              className={`${cn(linkMenuClasses.linkMenuItemNested)} `}
               style={{ transitionDelay: index / 10 + "s" }}
             >
               <Link
-                className={`${cn(linkMenuClasses.link)}`}
+                className={`${cn(linkMenuClasses.link)} ${
+                  pathname === `${path}${item.path}`
+                    ? "after:bg-white/[0.2]"
+                    : "after:bg-transparent"
+                }`}
                 href={`${path}${item.path}`}
               >
                 {item.title}

@@ -10,6 +10,10 @@ export const navigation: INavigationData[] = [
     path: "/three-scenes",
     nestedLinks: [
       {
+        title: "Personal game",
+        path: "/personal-game",
+      },
+      {
         title: "First Scene",
         path: "/first-scene",
       },

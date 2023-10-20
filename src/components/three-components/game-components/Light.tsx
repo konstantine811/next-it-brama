@@ -1,15 +1,26 @@
 import { Sky, useHelper } from "@react-three/drei";
 import { useControls } from "leva";
-import { memo, useEffect, useRef } from "react";
-import { DirectionalLightHelper } from "three";
+import { FC, memo, useEffect, useRef } from "react";
+import { DirectionalLightHelper, DirectionalLight } from "three";
 
-export default memo(function Light({ isHelper }) {
-  const directLightRef = useRef();
+interface ILightProps {
+  isHelper?: boolean;
+}
+
+const Light: FC<ILightProps> = ({ isHelper = false }) => {
+  const directLightRef = useRef<DirectionalLight>(null);
   const shadowWidth = 1;
   const shadowSize = 1024 * 2;
-  const helper = useHelper(directLightRef, DirectionalLightHelper, 5, "red");
+  const helper = useHelper(
+    directLightRef as any,
+    DirectionalLightHelper,
+    5,
+    "red"
+  );
   useEffect(() => {
-    helper.current.visible = isHelper;
+    if (helper && helper.current) {
+      helper.current.visible = isHelper;
+    }
   });
 
   const { sunPosition } = useControls("sky", {
@@ -35,4 +46,6 @@ export default memo(function Light({ isHelper }) {
       ></directionalLight>
     </>
   );
-});
+};
+
+export default memo(Light);

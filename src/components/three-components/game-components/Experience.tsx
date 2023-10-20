@@ -1,14 +1,23 @@
-import { Float, PivotControls, Text } from "@react-three/drei";
+import { PivotControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { memo, useRef } from "react";
+import { FC, memo, useRef } from "react";
 /* import CustomObject from "./CustomObject"; */
-import { DoubleSide } from "three";
+import {
+  BufferGeometry,
+  DoubleSide,
+  Group,
+  Mesh,
+  NormalBufferAttributes,
+} from "three";
 import { button, useControls } from "leva";
 
-export default memo(function Experience({ envEntensity }) {
-  const cubeRef = useRef();
-  const groupRef = useRef();
-  const sphereRef = useRef();
+interface IExperienceProps {
+  envEntensity?: number;
+}
+const Experience: FC<IExperienceProps> = ({ envEntensity = 1 }) => {
+  const cubeRef = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
+  const groupRef = useRef<Group>(null);
+  const sphereRef = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
   const { position, color } = useControls("sphere", {
     position: {
       value: { x: 2, y: 0 },
@@ -38,7 +47,9 @@ export default memo(function Experience({ envEntensity }) {
     state.camera.position.z = Math.cos(angle) * 8;
     state.camera.lookAt(0, 0, 0); */
     // state.camera.position.x += delta;
-    cubeRef.current.rotation.y += delta;
+    if (cubeRef && cubeRef.current) {
+      cubeRef.current.rotation.y += delta;
+    }
     // groupRef.current.rotation.y += delta;
   });
   return (
@@ -100,7 +111,7 @@ export default memo(function Experience({ envEntensity }) {
           </Text>
         </Float> */}
       </group>
-      <mesh rotation-x={-Math.PI * 0.5} position-y="-1" scale="10">
+      <mesh rotation-x={-Math.PI * 0.5} position-y="-1" scale={10}>
         <planeGeometry></planeGeometry>
         <meshStandardMaterial
           side={DoubleSide}
@@ -111,4 +122,6 @@ export default memo(function Experience({ envEntensity }) {
       {/* <CustomObject></CustomObject> */}
     </>
   );
-});
+};
+
+export default memo(Experience);

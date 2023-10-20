@@ -1,14 +1,21 @@
 import { TransformControls, useHelper } from "@react-three/drei";
-import { memo, useEffect, useRef, useState } from "react";
-import { BoxHelper } from "three";
+import { FC, memo, useEffect, useRef, useState } from "react";
+import { BoxHelper, BufferGeometry, Mesh, NormalBufferAttributes } from "three";
+import type { TransformControls as TransformControlsImpl } from "three-stdlib";
 
-export default memo(function BoxGeometry({ isHelper }) {
+interface IBoxGeometryProps {
+  isHelper: boolean;
+}
+
+const BoxGeometry: FC<IBoxGeometryProps> = ({ isHelper }) => {
   const [active, setActive] = useState(false);
-  const transformRef = useRef();
-  const boxRef = useRef();
-  const helper = useHelper(boxRef, BoxHelper, "white");
+  const transformRef = useRef<TransformControlsImpl>(null);
+  const boxRef = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
+  const helper = useHelper(boxRef as any, BoxHelper, "white");
   useEffect(() => {
-    helper.current.visible = isHelper;
+    if (helper && helper.current) {
+      helper.current.visible = isHelper;
+    }
   });
 
   return (
@@ -36,4 +43,6 @@ export default memo(function BoxGeometry({ isHelper }) {
       </mesh>
     </TransformControls>
   );
-});
+};
+
+export default memo(BoxGeometry);

@@ -121,7 +121,7 @@ export default function FirstThreeScene() {
         ) : null}
         {/* {testing ? <gridHelper args={[100, 100]}></gridHelper> : null} */}
         <Ground></Ground>
-        <ForestModel /* drawPoints={drawPoints} */></ForestModel>
+        <ForestModel boundary={100} count={100}></ForestModel>
         <Light></Light>
         <OrbitControls makeDefault ref={orbitRef}></OrbitControls>
         {/*  <BoxGeometry orbit={orbitRef} isHelper={testing}></BoxGeometry> */}

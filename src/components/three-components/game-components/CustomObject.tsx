@@ -1,9 +1,9 @@
-import { DoubleSide } from "three";
+import { BufferGeometry, DoubleSide, NormalBufferAttributes } from "three";
 import { useMemo, useRef, useEffect, memo } from "react";
 
 export default memo(function CustomObject() {
   const verticesCount = 10 * 3;
-  const geometryRef = useRef();
+  const geometryRef = useRef<BufferGeometry<NormalBufferAttributes>>(null);
 
   const positions = useMemo(() => {
     const positions = new Float32Array(verticesCount * 3);
@@ -13,7 +13,9 @@ export default memo(function CustomObject() {
     return positions;
   }, [verticesCount]);
   useEffect(() => {
-    geometryRef.current.computeVertexNormals();
+    if (geometryRef && geometryRef.current) {
+      geometryRef.current.computeVertexNormals();
+    }
   }, [geometryRef]);
   return (
     <mesh position-x="-1">

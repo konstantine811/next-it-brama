@@ -1,11 +1,15 @@
 import { MeshReflectorMaterial } from "@react-three/drei";
-import { memo, useState } from "react";
-import { DoubleSide } from "three";
+import { FC, memo, useState } from "react";
+import { DoubleSide, Vector3 } from "three";
 // import EventBus, { EVENT_TYPES } from "../EventBus";
 import { useControls } from "leva";
 
-export default memo(function Ground({ envEntensity }) {
-  const [pointer, setPointer] = useState();
+interface IGroundProps {
+  envEntensity?: number;
+}
+
+const Ground: FC<IGroundProps> = ({ envEntensity = 1 }) => {
+  const [pointer, setPointer] = useState<Vector3>();
   const { groundColor } = useControls("ground", {
     groundColor: "#0c4810",
   });
@@ -31,7 +35,6 @@ export default memo(function Ground({ envEntensity }) {
           envMapIntensity={envEntensity}
           color={groundColor}
           side={DoubleSide}
-          receiveShadow
         ></meshStandardMaterial>
       </mesh>
       {pointer ? (
@@ -53,4 +56,6 @@ export default memo(function Ground({ envEntensity }) {
       ) : null}
     </>
   );
-});
+};
+
+export default memo(Ground);

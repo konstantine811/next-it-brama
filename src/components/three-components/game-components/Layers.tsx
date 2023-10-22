@@ -1,7 +1,7 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { memo, useEffect } from "react";
 
-export default memo(function Layers() {
+const Layers = () => {
   const model = useGLTF("/models/layers.glb");
 
   const { actions } = useAnimations(model.animations, model.scene);
@@ -17,4 +17,6 @@ export default memo(function Layers() {
       </group>
     </>
   );
-});
+};
+
+export default memo(Layers);

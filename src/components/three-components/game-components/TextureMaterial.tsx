@@ -41,7 +41,6 @@ export default function TextureMaterial() {
       <mesh castShadow position={[5, 3, 1]}>
         <sphereGeometry args={[2.5, 264, 264]}></sphereGeometry>
         <meshStandardMaterial
-          speed={1}
           map={colorMap}
           displacementScale={0.07}
           displacementMap={displacementMap}

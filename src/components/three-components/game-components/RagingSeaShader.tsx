@@ -1,10 +1,11 @@
-import { TransformControls } from "@react-three/drei";
+import { PivotControls, TransformControls } from "@react-three/drei";
 /* import { useControls } from "leva"; */
 import { useRef } from "react";
 import { waterFragmentShader, waterVertexShader } from "@shaders/water/water";
+import { BufferGeometry, Mesh, NormalBufferAttributes } from "three";
 
 export default function RagingSeaShader() {
-  const meshRef = useRef();
+  const meshRef = useRef<Mesh<BufferGeometry<NormalBufferAttributes>>>(null);
 
   /*   useControls("wave shader", {
     wavesElevationX: {
@@ -38,17 +39,17 @@ export default function RagingSeaShader() {
 
   return (
     <>
-      <TransformControls>
+      <PivotControls>
         <mesh ref={meshRef} position={[0, 1, 0]} rotation-x={-Math.PI / 2}>
           <planeGeometry args={[5, 5, 128, 128]}></planeGeometry>
           <shaderMaterial
             fragmentShader={waterFragmentShader}
             vertexShader={waterVertexShader}
             wireframe
-            uniforms={uniforms}
+            uniforms={uniforms()}
           ></shaderMaterial>
         </mesh>
-      </TransformControls>
+      </PivotControls>
     </>
   );
 }

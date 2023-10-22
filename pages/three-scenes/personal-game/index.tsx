@@ -2,12 +2,11 @@ import { Canvas } from "@react-three/fiber";
 // components
 import Experience from "@components/three-components/game-components/Experience";
 import TrainShader from "@components/three-components/game-components/ShaderTrain";
-/* import TextureMaterial from "../components/TextureMaterial";
-import BoxGeometry from "../components/BoxGeometry"; */
+/* import TextureMaterial from "../components/TextureMaterial";*/
+import BoxGeometry from "@components/three-components/game-components/BoxGeometry";
 import Light from "@components/three-components/game-components/Light";
 import Ground from "@components/three-components/game-components/Ground";
 import ForestModel from "@components/three-components/game-components/ForestModel";
-/* import Layers from "../components/Layers"; */
 import Character from "@components/three-components/game-components/Character";
 /* import Wall from "../components/Wall"; */
 import RagingSeaShader from "@components/three-components/game-components/RagingSeaShader";
@@ -33,6 +32,8 @@ import { Leva, useControls } from "leva";
 import { Perf } from "r3f-perf";
 import { useSelector } from "react-redux";
 import { onHeaderHeightState } from "@/src/store/slices/commonSlice";
+import TextureMaterial from "@/src/components/three-components/game-components/TextureMaterial";
+import Layers from "@/src/components/three-components/game-components/Layers";
 
 export default function FirstThreeScene() {
   const headerHeight = useSelector(onHeaderHeightState);
@@ -124,14 +125,14 @@ export default function FirstThreeScene() {
         <ForestModel boundary={100} count={100}></ForestModel>
         <Light></Light>
         <OrbitControls makeDefault ref={orbitRef}></OrbitControls>
-        {/*  <BoxGeometry orbit={orbitRef} isHelper={testing}></BoxGeometry> */}
-        {/*  <Layers></Layers> */}
+        {/* <BoxGeometry isHelper={testing}></BoxGeometry> */}
+        <Layers></Layers>
         <Character orbit={orbitRef}></Character>
         <Experience></Experience>
-        {/*  <TrainShader></TrainShader> */}
-        {/*  <RagingSeaShader></RagingSeaShader>
-        <ParticlePlayground></ParticlePlayground> */}
-        {/* <TextureMaterial></TextureMaterial> */}
+        <TrainShader></TrainShader>
+        <RagingSeaShader></RagingSeaShader>
+        <ParticlePlayground></ParticlePlayground>
+        <TextureMaterial></TextureMaterial>
       </Canvas>
     </>
   );

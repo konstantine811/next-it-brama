@@ -1,27 +1,40 @@
 import { shaderMaterial } from "@react-three/drei";
 import { memo, useMemo, useRef, useState } from "react";
-import { AdditiveBlending, MathUtils } from "three";
+import {
+  AdditiveBlending,
+  BufferGeometry,
+  Material,
+  MathUtils,
+  NormalBufferAttributes,
+  Points,
+} from "three";
 import { extend, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import {
   customGeometryFragmentShader,
   customGeometryVertexShader,
 } from "@shaders/custom-geometry-particle/custom-geometry-particle";
+import { a } from "@react-spring/three";
 
-const CustomShaderMaterial = shaderMaterial({
-  uTime: 0.0,
-  uRadius: 21,
+const CustomShaderMaterial = shaderMaterial(
+  {
+    uTime: 0.0,
+    uRadius: 21,
+  },
   customGeometryVertexShader,
-  customGeometryFragmentShader,
-});
+  customGeometryFragmentShader
+);
 
 extend({ CustomShaderMaterial });
 
 export default memo(function CustomGeometryParticle() {
-  const [uTime, setUTime] = useState();
+  const [uTime, setUTime] = useState<number>();
   const count = 81500;
-  const points = useRef();
-  const shape = "galactic";
+  const points =
+    useRef<
+      Points<BufferGeometry<NormalBufferAttributes>, Material | Material[]>
+    >(null);
+  const shape: string = "galactic";
   const itemSize = 3;
 
   const controls = useControls("custom geometry shader", {
@@ -70,7 +83,7 @@ export default memo(function CustomGeometryParticle() {
       }
     }
     return positions;
-  }, [count, shape]);
+  }, [count, shape, controls]);
 
   useFrame(({ clock }) => {
     setUTime(clock.getElapsedTime());
@@ -96,12 +109,16 @@ export default memo(function CustomGeometryParticle() {
             itemSize={itemSize}
           ></bufferAttribute>
         </bufferGeometry>
+        {/*@ts-ignore */}
         <customShaderMaterial
           uTime={uTime}
           uRadius={controls.uRadius}
           /* blending={AdditiveBlending} */
           depthWrite={false}
-        ></customShaderMaterial>
+        >
+          {" "}
+          {/*@ts-ignore */}
+        </customShaderMaterial>
       </points>
     </>
   );

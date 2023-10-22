@@ -1,7 +1,14 @@
 import { shaderMaterial } from "@react-three/drei";
 import { extend, useFrame, useLoader } from "@react-three/fiber";
 import { memo, Suspense, useRef } from "react";
-import { Color, DoubleSide, Texture, TextureLoader } from "three";
+import {
+  Color,
+  DoubleSide,
+  ShaderMaterial,
+  Texture,
+  TextureLoader,
+  ShaderMaterialParameters,
+} from "three";
 import { useControls } from "leva";
 
 const WaveShaderMaterial = shaderMaterial(
@@ -53,7 +60,7 @@ extend({ WaveShaderMaterial });
 
 const Wave = () => {
   const [image] = useLoader(TextureLoader, ["/own.jpg"]);
-  const ref = useRef();
+  const ref = useRef<ShaderMaterial>();
   const planeSegments = 16 * 1;
   const controls = useControls("texture shader", {
     uNoiseFreq: {
@@ -70,13 +77,16 @@ const Wave = () => {
     },
   });
   useFrame(({ clock }) => {
-    ref.current.uTime = clock.getElapsedTime();
+    if (ref && ref.current) {
+      (ref.current as any).uTime = clock.getElapsedTime();
+    }
   });
   return (
     <mesh scale={5} position={[0, 1, 3]}>
       <planeGeometry
         args={[0.4, 0.6, planeSegments, planeSegments]}
       ></planeGeometry>
+      {/*@ts-ignore */}
       <waveShaderMaterial
         uColor={"hotpink"}
         uNoiseFreq={controls.uNoiseFreq}
@@ -84,7 +94,10 @@ const Wave = () => {
         uTexture={image}
         ref={ref}
         side={DoubleSide}
-      ></waveShaderMaterial>
+      >
+        {" "}
+        {/*@ts-ignore */}
+      </waveShaderMaterial>
     </mesh>
   );
 };

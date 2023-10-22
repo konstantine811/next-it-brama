@@ -101,7 +101,6 @@ const ForestModel: FC<IForestModelProps> = ({
       return false;
     };
     if (drawPoints) {
-      console.log("draw points");
       const trees = drawPoints.map((vector, index) => {
         const tempTrees: ITempTrees = {
           position: {

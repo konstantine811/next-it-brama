@@ -1,0 +1,30 @@
+.preloader-2 .line {
+  width: 1px;
+  height: 12px;
+  background: #fff;
+  margin: 0 4px;
+  display: inline-block;
+  animation: opacity-2 1000ms infinite ease-in-out;
+}
+
+@for $i from 1 through 3 {
+  .preloader-2 .line-#{$i},
+  .preloader-2 .line-#{10 - $i} {
+    animation-delay: #{1000 - ($i * 200)}ms;
+  }
+}
+
+@keyframes opacity-2 {
+  0% {
+    opacity: 1;
+    height: 15px;
+  }
+  50% {
+    opacity: 0;
+    height: 12px;
+  }
+  100% {
+    opacity: 1;
+    height: 15px;
+  }
+}

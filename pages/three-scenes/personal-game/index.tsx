@@ -1,3 +1,4 @@
+"use client";
 import { Canvas } from "@react-three/fiber";
 // components
 import Experience from "@components/three-components/game-components/Experience";
